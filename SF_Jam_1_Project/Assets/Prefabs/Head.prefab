@@ -385,6 +385,8 @@ MonoBehaviour:
   _bodyMarker: {fileID: 420621601070120411}
   _rb: {fileID: 887975848306105295}
   _areaCollider: {fileID: 565022423958269223}
+  _renderer: {fileID: 4886143946425201056}
+  _slerpSpeed: 2
 --- !u!114 &420621601070120411
 MonoBehaviour:
   m_ObjectHideFlags: 0

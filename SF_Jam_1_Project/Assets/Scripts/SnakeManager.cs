@@ -124,7 +124,7 @@ public class SnakeManager : Singleton<SnakeManager>
         MoveSnakeHead();
         RotateSnakeHead();
         MoveSnakeBodyParts();
-        //FlipSprites();
+        FlipSprites();
     }
 
     private void MoveSnakeHead()
@@ -176,27 +176,27 @@ public class SnakeManager : Singleton<SnakeManager>
         }
     }
 
-    //private void FlipSprites()
-    //{
-    //    int _count = _snakeBody.Count;
+    private void FlipSprites()
+    {
+        int _count = _snakeBody.Count;
 
-    //    for (int i = 0; i < _count; i++)
-    //    {
-    //        var _bodyPart = _snakeBody[i];
+        for (int i = 0; i < _count; i++)
+        {
+            var _bodyPart = _snakeBody[i];
 
-    //        if (i == 0)
-    //        {
-    //            _bodyPart.FlipX();
-    //        }
-    //        else
-    //        {
-    //            BodyMarker _previousBodyMarker = _snakeBody[i - 1].BodyMarker;
-    //            Vector3 _dir = _previousBodyMarker.Markers[0].position - _bodyPart.transform.position;
-    //            Vector3 _velocity = _dir.normalized * _moveSpeed * Time.fixedDeltaTime;
-    //            _bodyPart.FlipX(_velocity.x);
-    //        }
-    //    }
-    //}
+            if (i == 0)
+            {
+                _bodyPart.FlipX();
+            }
+            else
+            {
+                BodyMarker _previousBodyMarker = _snakeBody[i - 1].BodyMarker;
+                Vector3 _dir = _previousBodyMarker.Markers[0].position - _bodyPart.transform.position;
+                Vector3 _velocity = _dir.normalized * _moveSpeed * Time.fixedDeltaTime;
+                _bodyPart.FlipX(_velocity.x);
+            }
+        }
+    }
 
     public bool IsSnakeHead(GameObject _gameObject)
     {
