@@ -18,13 +18,13 @@ public class SnakeBodyPart : MonoBehaviour
 
     private void OnDisable()
     {
-        headScript.OnMove -= Move;
+        //headScript.OnMove -= Move;
     }
 
-    private void LateUpdate()
-    {
-        Move();
-    }
+    //private void LateUpdate()
+    //{
+    //    Move();
+    //}
 
     public void Init(SnakeHead _headScript, int _indexValue)
     {
@@ -34,12 +34,17 @@ public class SnakeBodyPart : MonoBehaviour
         //headScript.OnMove += Move;
     }
 
+    public float smoothTime = 0.3F;
+    private Vector3 velocity = Vector3.zero;
+
     private void Move()
     {
-        if (headScript.positionHistory.Count > index)
-        {
-            Vector3 targetPos = headScript.positionHistory[index];
-            transform.position = Vector3.Lerp(transform.position, targetPos, 0.5f);
-        }
+        //if (headScript.positionHistory.Count > index)
+        //{
+        //    Vector3 targetPos = headScript.positionHistory[index];
+        //    var _position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
+        //    transform.position = _position;
+        //    //transform.position = Vector3.Lerp(transform.position, targetPos, 0.5f);
+        //}
     }
 }
