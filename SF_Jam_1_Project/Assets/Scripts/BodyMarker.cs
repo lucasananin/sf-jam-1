@@ -22,10 +22,10 @@ public class BodyMarker : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        UpdateMarkerList();
-    }
+    //private void FixedUpdate()
+    //{
+    //    UpdateMarkerList();
+    //}
 
     public void UpdateMarkerList()
     {

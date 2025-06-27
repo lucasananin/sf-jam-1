@@ -1,5 +1,4 @@
 //using Sirenix.OdinInspector;
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -22,6 +21,21 @@ public class SnakeManager : Singleton<SnakeManager>
     private void Start()
     {
         CreateBodyParts();
+
+        //var _instance = Instantiate(_bodyParts[0], transform.position, transform.rotation);
+        //_snakeBody.Add(_instance);
+        //_cinemachine.Follow = _instance.transform;
+
+        //for (int i = 0; i < _maxSnakeBody; i++)
+        //{
+        //    var _lastBodyMarker = _snakeBody[^1].BodyMarker;
+        //    int _randomIndex = Random.Range(1, _bodyParts.Count);
+        //    var _position = transform.position + Vector3.left;
+        //    _instance = Instantiate(_bodyParts[_randomIndex], _position, transform.rotation);
+        //    _snakeBody.Add(_instance);
+        //    _instance.BodyMarker.ClearMarkerList();
+        //    _timer = 0;
+        //}
     }
 
     private void OnEnable()
@@ -50,6 +64,7 @@ public class SnakeManager : Singleton<SnakeManager>
     {
         if (!GameManager.Instance.IsPlaying) return;
 
+        UpdateBodyMarkers();
         ManageSnakeBody();
         SnakeMovement();
     }
@@ -60,14 +75,12 @@ public class SnakeManager : Singleton<SnakeManager>
 
         if (_snakeBody.Count == 0)
         {
-            //int _randomIndex = Random.Range(0, _bodyParts.Count);
             var _instance = Instantiate(_bodyParts[0], transform.position, transform.rotation);
-            //var _instance = Instantiate(_bodyParts[_maxSnakeBody - 1], transform.position, transform.rotation);
             _snakeBody.Add(_instance);
             _cinemachine.Follow = _instance.transform;
         }
 
-        var _lastBodyMarker = _snakeBody[_snakeBody.Count - 1].BodyMarker;
+        var _lastBodyMarker = _snakeBody[^1].BodyMarker;
 
         if (_timer == 0)
         {
@@ -82,10 +95,20 @@ public class SnakeManager : Singleton<SnakeManager>
         {
             int _randomIndex = Random.Range(1, _bodyParts.Count);
             var _instance = Instantiate(_bodyParts[_randomIndex], _lastBodyMarker.Markers[0].position, _lastBodyMarker.Markers[0].rotation);
-            //var _instance = Instantiate(_bodyParts[_maxSnakeBody - 1], _lastBodyMarker.Markers[0].position, _lastBodyMarker.Markers[0].rotation);
             _snakeBody.Add(_instance);
             _instance.BodyMarker.ClearMarkerList();
             _timer = 0;
+        }
+    }
+
+    private void UpdateBodyMarkers()
+    {
+        int _count = _snakeBody.Count;
+
+        for (int i = 0; i < _count; i++)
+        {
+            var _bodyMarker = _snakeBody[i].BodyMarker;
+            _bodyMarker.UpdateMarkerList();
         }
     }
 
@@ -130,7 +153,8 @@ public class SnakeManager : Singleton<SnakeManager>
     private void MoveSnakeHead()
     {
         var _snakeHead = _snakeBody[0];
-        _snakeHead.Rb.linearVelocity = _moveSpeed * Time.fixedDeltaTime * _snakeHead.transform.right;
+        //_snakeHead.Rb.linearVelocity = _moveSpeed * Time.fixedDeltaTime * _snakeHead.transform.right;
+        _snakeHead.Rb.linearVelocity = _moveSpeed * _snakeHead.transform.right;
     }
 
     private void StopSnakeHead()
@@ -165,11 +189,11 @@ public class SnakeManager : Singleton<SnakeManager>
             {
                 BodyMarker _previousBodyMarker = _snakeBody[i - 1].BodyMarker;
                 BodyPart _bodyPart = _snakeBody[i];
-                //_bodyPart.transform.position = _previousBodyMarker.Markers[0].position;
-                //_bodyPart.transform.rotation = _previousBodyMarker.Markers[0].rotation;
                 var _direction = (_previousBodyMarker.Markers[0].position - _bodyPart.Rb.position).normalized;
-                var _velocity = _moveSpeed * Time.fixedDeltaTime * _direction;
+                //var _velocity = _moveSpeed * Time.fixedDeltaTime * _direction;
+                var _velocity = _moveSpeed * _direction;
                 _bodyPart.Rb.linearVelocity = _velocity;
+                //_bodyPart.Rb.position = _previousBodyMarker.Markers[0].position;
                 _bodyPart.Rb.rotation = _previousBodyMarker.Markers[0].rotation;
                 _previousBodyMarker.Markers.RemoveAt(0);
             }
@@ -192,7 +216,7 @@ public class SnakeManager : Singleton<SnakeManager>
             {
                 BodyMarker _previousBodyMarker = _snakeBody[i - 1].BodyMarker;
                 Vector3 _dir = _previousBodyMarker.Markers[0].position - _bodyPart.transform.position;
-                Vector3 _velocity = _dir.normalized * _moveSpeed * Time.fixedDeltaTime;
+                Vector3 _velocity = _moveSpeed * Time.fixedDeltaTime * _dir.normalized;
                 _bodyPart.FlipX(_velocity.x);
             }
         }
@@ -205,15 +229,15 @@ public class SnakeManager : Singleton<SnakeManager>
 
     public bool IsInsideSnakePosition(Vector3 _position)
     {
-        //int _count = _snakeBody.Count;
+        int _count = _snakeBody.Count;
 
-        //for (int i = 0; i < _count; i++)
-        //{
-        //    if (_snakeBody[i].AreaCollider.bounds.Contains(_position))
-        //    {
-        //        return true;
-        //    }
-        //}
+        for (int i = 0; i < _count; i++)
+        {
+            if (_snakeBody[i].AreaCollider.bounds.Contains(_position))
+            {
+                return true;
+            }
+        }
 
         return false;
     }

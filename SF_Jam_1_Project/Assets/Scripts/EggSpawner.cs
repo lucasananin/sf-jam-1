@@ -57,7 +57,7 @@ public class EggSpawner : MonoBehaviour
         {
             float _randomX = Random.Range(-_xExtents, _xExtents);
             float _randomY = Random.Range(-_yExtents, _yExtents);
-            Vector3 _randomPosition = new Vector3(_randomX, _randomY, 0);
+            Vector3 _randomPosition = new(_randomX, _randomY, 0);
 
             if (SnakeManager.Instance.IsInsideSnakePosition(_randomPosition))
             {

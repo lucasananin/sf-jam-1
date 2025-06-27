@@ -5,46 +5,28 @@ public class SnakeBodyPart : MonoBehaviour
     public Transform head;
     public int index; // Which point to follow in the head's trail
     public SnakeHead headScript;
+    public Rigidbody _rb = null;
+    public float moveSpeed = 5f;
 
-    //private void Awake()
-    //{
-    //    headScript = head.GetComponent<SnakeHead>();
-    //}
-
-    //private void OnEnable()
-    //{
-    //    headScript.OnMove += Move;
-    //}
-
-    private void OnDisable()
+    void Start()
     {
-        //headScript.OnMove -= Move;
+        headScript = head.GetComponent<SnakeHead>();
     }
 
-    //private void LateUpdate()
+    //void LateUpdate()
     //{
     //    Move();
     //}
 
-    public void Init(SnakeHead _headScript, int _indexValue)
+    public void Move()
     {
-        headScript = _headScript;
-        index = _indexValue;
-        head = _headScript.transform;
-        //headScript.OnMove += Move;
-    }
+        if (headScript.positionHistory.Count > index)
+        {
+            Vector3 targetPos = headScript.positionHistory[index];
+            //transform.position = Vector3.Lerp(transform.position, targetPos, 0.5f);
 
-    public float smoothTime = 0.3F;
-    private Vector3 velocity = Vector3.zero;
-
-    private void Move()
-    {
-        //if (headScript.positionHistory.Count > index)
-        //{
-        //    Vector3 targetPos = headScript.positionHistory[index];
-        //    var _position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
-        //    transform.position = _position;
-        //    //transform.position = Vector3.Lerp(transform.position, targetPos, 0.5f);
-        //}
+            var _direction = (targetPos - transform.position).normalized;
+            _rb.linearVelocity = _direction * moveSpeed;
+        }
     }
 }

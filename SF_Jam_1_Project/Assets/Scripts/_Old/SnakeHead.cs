@@ -5,22 +5,44 @@ using UnityEngine.Events;
 public class SnakeHead : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float turnSpeed = 100f;
-    private Rigidbody rb;
+    public float turnSpeed = 180f;
+    public Rigidbody _rb = null;
+    public SnakeBodySpawner _spawner = null;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+    public event UnityAction OnMove = null;
 
     void FixedUpdate()
     {
-        // Move forward
-        rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * transform.forward);
+        // Move forward constantly
+        //transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        _rb.linearVelocity = transform.right * moveSpeed;
 
-        // Rotate with A/D
+        // Rotate with A/D keys
         float h = Input.GetAxis("Horizontal");
-        Quaternion deltaRotation = Quaternion.Euler(0f, h * turnSpeed * Time.fixedDeltaTime, 0f);
-        rb.MoveRotation(rb.rotation * deltaRotation);
+        transform.Rotate(Vector3.forward, h * turnSpeed * Time.fixedDeltaTime);
+
+        fodase();
+
+        for (int i = 0; i < _spawner._bodyParts.Count; i++)
+        {
+            _spawner._bodyParts[i].Move();
+        }
+    }
+
+    public List<Vector3> positionHistory = new List<Vector3>();
+    public float gap = 0.5f; // Distance between points
+    private float distanceMoved = 0f;
+
+    //void LateUpdate()
+    //{
+    //    fodase();
+    //}
+
+    void fodase()
+    {
+        if (positionHistory.Count == 0 || Vector3.Distance(transform.position, positionHistory[0]) > gap)
+        {
+            positionHistory.Insert(0, transform.position);
+        }
     }
 }
