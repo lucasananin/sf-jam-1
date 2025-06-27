@@ -5388,6 +5388,7 @@ MonoBehaviour:
   _bodyParts:
   - {fileID: 412603597970115466, guid: 0c1435da679b0e847a6ef3ff89ca6f5b, type: 3}
   - {fileID: 412603597970115466, guid: 29da3341b81998c4a839d6fe5d00b779, type: 3}
+  - {fileID: 412603597970115466, guid: 8486f0465c5309840b9ea6b37eafc60b, type: 3}
   _maxSnakeBody: 10
   _rotateInput: 0
   _timer: 0

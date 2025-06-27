@@ -93,7 +93,8 @@ public class SnakeManager : Singleton<SnakeManager>
 
         if (_timer >= _distanceBetween)
         {
-            int _randomIndex = Random.Range(1, _bodyParts.Count);
+            //int _randomIndex = Random.Range(1, _bodyParts.Count);
+            int _randomIndex = _snakeBody.Count == _maxSnakeBody - 1 ? 2 : 1;
             var _instance = Instantiate(_bodyParts[_randomIndex], _lastBodyMarker.Markers[0].position, _lastBodyMarker.Markers[0].rotation);
             _snakeBody.Add(_instance);
             _instance.BodyMarker.ClearMarkerList();
