@@ -1,5 +1,4 @@
 //using Sirenix.OdinInspector;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ public class BodyMarker : MonoBehaviour
 {
     [SerializeField/*, ReadOnly*/] List<Marker> _markers = new List<Marker>();
 
-    public List<Marker> Markers { get => _markers; private set => _markers = value; }
+    public List<Marker> Markers { get => _markers; }
 
     [System.Serializable]
     public class Marker
@@ -32,6 +31,7 @@ public class BodyMarker : MonoBehaviour
         if (_markers.Count > 99) return;
 
         _markers.Add(new Marker(transform.position, transform.rotation));
+        //Debug.Log($"{name} add marker", this);
     }
 
     public void ClearMarkerList()

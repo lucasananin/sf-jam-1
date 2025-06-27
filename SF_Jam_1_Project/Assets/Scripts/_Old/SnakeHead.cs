@@ -9,7 +9,7 @@ public class SnakeHead : MonoBehaviour
     public Rigidbody _rb = null;
     public SnakeBodySpawner _spawner = null;
 
-    public event UnityAction OnMove = null;
+    //public event UnityAction OnMove = null;
 
     void FixedUpdate()
     {
@@ -31,7 +31,7 @@ public class SnakeHead : MonoBehaviour
 
     public List<Vector3> positionHistory = new List<Vector3>();
     public float gap = 0.5f; // Distance between points
-    private float distanceMoved = 0f;
+    //private float distanceMoved = 0f;
 
     //void LateUpdate()
     //{

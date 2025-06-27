@@ -26,17 +26,34 @@ public class SnakeManager : Singleton<SnakeManager>
         //_snakeBody.Add(_instance);
         //_cinemachine.Follow = _instance.transform;
 
-        //for (int i = 0; i < _maxSnakeBody; i++)
+        //for (int i = 1; i < _maxSnakeBody; i++)
         //{
         //    var _lastBodyMarker = _snakeBody[^1].BodyMarker;
-        //    int _randomIndex = Random.Range(1, _bodyParts.Count);
-        //    var _position = transform.position + Vector3.left;
-        //    _instance = Instantiate(_bodyParts[_randomIndex], _position, transform.rotation);
+        //    _lastBodyMarker.ClearMarkerList();
+
+        //    int _randomIndex = 1;
+        //    var _position = transform.position + _distanceBetween * i * Vector3.left;
+        //    var _instance = Instantiate(_bodyParts[_randomIndex], _position, transform.rotation);
         //    _snakeBody.Add(_instance);
         //    _instance.BodyMarker.ClearMarkerList();
         //    _timer = 0;
+        //    //Fodase();
         //}
+
+        //UpdateBodyMarkers();
     }
+
+    //private void Fodase()
+    //{
+    //    var _lastBodyMarker = _snakeBody[^1].BodyMarker;
+    //    _lastBodyMarker.ClearMarkerList();
+
+    //    int _randomIndex = _snakeBody.Count == _maxSnakeBody - 1 ? 2 : 1;
+    //    var _instance = Instantiate(_bodyParts[_randomIndex], _lastBodyMarker.Markers[0].position, _lastBodyMarker.Markers[0].rotation);
+    //    _snakeBody.Add(_instance);
+    //    _instance.BodyMarker.ClearMarkerList();
+    //    _timer = 0;
+    //}
 
     private void OnEnable()
     {
