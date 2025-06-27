@@ -10,11 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 674520820907583556, guid: 3014c4a73cdbe27499be8731b5b6d9ba, type: 3}
       propertyPath: m_Name
-      value: Projectile_Meteor
+      value: Projectile_Angel
       objectReference: {fileID: 0}
     - target: {fileID: 674520820907583556, guid: 3014c4a73cdbe27499be8731b5b6d9ba, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238174800427979140, guid: 3014c4a73cdbe27499be8731b5b6d9ba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4752343441399699579, guid: 3014c4a73cdbe27499be8731b5b6d9ba, type: 3}
       propertyPath: _tags
@@ -77,16 +81,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8393616082003369952, guid: 3014c4a73cdbe27499be8731b5b6d9ba, type: 3}
-      propertyPath: m_Time
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8393616082003369952, guid: 3014c4a73cdbe27499be8731b5b6d9ba, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8a343a2dc1e5a994fa06c2fcdd6cfad3, type: 2}
     - target: {fileID: 8393616082003369952, guid: 3014c4a73cdbe27499be8731b5b6d9ba, type: 3}
       propertyPath: m_Parameters.widthMultiplier
-      value: 2.5
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
