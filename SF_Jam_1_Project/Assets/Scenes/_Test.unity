@@ -6012,6 +6012,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoundingVolume: {fileID: 107980987}
   SlowingDistance: 0
+--- !u!1 &2025382755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2025382757}
+  - component: {fileID: 2025382756}
+  m_Layer: 0
+  m_Name: AngelSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2025382756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025382755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b99a43c7f725ce64d9f3edded3d50c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 7817675201581550951, guid: f6da062bbaebeb94eaa2cbf9490674b3, type: 3}
+  _spawnArea: {fileID: 696897352}
+  _moveArea: {fileID: 107980987}
+  _moveSpeed: 20
+  _spawnRate: 1
+  _maxSpawns: 3
+  _nextSpawn: 0
+  _list: []
+--- !u!4 &2025382757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025382755}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2129353072
 GameObject:
   m_ObjectHideFlags: 0
@@ -6108,6 +6160,7 @@ SceneRoots:
   - {fileID: 424164191}
   - {fileID: 669451284}
   - {fileID: 485935561}
+  - {fileID: 2025382757}
   - {fileID: 22169029}
   - {fileID: 108223603}
   - {fileID: 107980988}
