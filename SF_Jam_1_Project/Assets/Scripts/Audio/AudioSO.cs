@@ -8,6 +8,7 @@ public class AudioSO : ScriptableObject
     [SerializeField] AudioClip _clip = null;
     [SerializeField] AudioMixerGroup _output = null;
     [SerializeField] bool _isMusic = false;
+    [SerializeField] float _delay = 0f;
 
     [Header("// Ignores")]
     [SerializeField] bool _bypassEffects = false;
@@ -36,7 +37,9 @@ public class AudioSO : ScriptableObject
     public static event AudioPlayAction OnPlay = null;
 
     public bool IsMusic { get => _isMusic; }
+    public float Delay { get => _delay; }
     public int Priority { get { return (int)_priorityLevel; } set { _priorityLevel = (PriorityLevel)value; } }
+
 
     public AudioSource Play(Vector3 _position)
     {

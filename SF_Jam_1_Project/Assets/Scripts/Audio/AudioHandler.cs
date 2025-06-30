@@ -30,7 +30,10 @@ public class AudioHandler : MonoBehaviour
         var _source = _so.IsMusic ? _sources[0] : GetAvailableSource();
         _so.ApplyTo(_source);
         _source.transform.position = _position;
-        _source.Play();
+        if (_so.Delay > 0)
+            _source.PlayDelayed(_so.Delay);
+        else
+            _source.Play();
         return _source;
     }
 
